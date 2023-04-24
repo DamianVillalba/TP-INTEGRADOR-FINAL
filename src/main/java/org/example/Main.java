@@ -10,16 +10,15 @@ public class Main {
     public static void main(String[] args) throws IOException{
         // args[0] tiene que ser el archivo del pronostico y args[1] tiene que ser el archivo del resultado. Sino hay error.
         //armado de instancias
-        List<Pronostico> pronosticos = new ArrayList<>();
-        List<Partido> partidos = new ArrayList<>();
-        armadoDeInstancias(args[0], args[1], pronosticos, partidos);
+        // TODO VIEJO List<Pronostico> pronosticos = new ArrayList<>();
+        List<Persona> personas = new ArrayList<>(); //LISTA DE PERSONAS QUE SE VA A USAR PARA VER LOS PUNTOS
+        // TODO VIEJO armadoDeInstancias(args[0], args[1], pronosticos, partidos);
         //creo la ronda con los datos ya incorporados
-        Ronda ronda1 = new Ronda("1", partidos);
-        //resultado con los pronosticos de cada partido evaluado
-        System.out.println("Puntaje del pronostico: " + ronda1.puntos(pronosticos));
+        Ronda ronda1 = new Ronda("1", listaDePartidosRonda(args[1], 1));
+        // System.out.println("Puntaje del pronostico: " + ronda1.puntos(personas)); //lista personas y que itere cada persona dando el resultado
     }
 
-    private static List<String> infoArchivo(String archivo, int partido) throws IOException {
+    private static List<String> infoPartido(String archivo, int partido) throws IOException {
         //sacamos una lista con la informacion del partido (al ser univocos no importa cual de los dos archivos procesar para sacar los equipos)
         //el parametro partido indica el numero de partido correspondiente (linea), debe existir ese partido sino da error.
         List<String> informacion = null;
@@ -47,21 +46,24 @@ public class Main {
         }
     }
 
-    private static int cantidadPartidos(String archivo) throws IOException{
+    private static int cantidadPartidosRonda(String archivoResultados, int numeroRonda) throws IOException{
+        //TODO TERMINAR: tiene que sacar los partidos de la ronda que reciba por parametro. ejemplo la 1.
         int partidos = 0;
-        for(String linea : Files.readAllLines(Paths.get(archivo))){
+        if (numeroRonda == )
+        for(String linea : Files.readAllLines(Paths.get(archivoResultados))){
             partidos++;
         }
         return partidos;
     }
-    private static void armadoDeInstancias(String archivoPronostico, String archivoResultado, List<Pronostico> listaPronosticos, List<Partido> listaPartidos) throws IOException{
-        // creo instancias de pronostico y defino los partidos para cada uno, agregandolos a la lista correspondiente.
-        for(int indice = 1; indice <= cantidadPartidos(archivoPronostico); indice++){
+    private static List<Partido> listaDePartidosRonda(String archivoResultado, int numeroRonda) throws IOException{
+        // creo instancias necesarias y defino cada partido para retornarlo en una lista.
+        List<Partido> partidos = new ArrayList<>();
+        // TODO REVISAR, TIENE QUE ENCONTRAR PRIMERO LA RONDA A LA QUE SE REFIERE EN numeroRonda Y DESPUES CREAR LAS INSTANCIAS
+        for(int indice = 1; indice <= cantidadPartidosRonda(archivoResultado, numeroRonda); indice++){
             Equipo equipo1 = new Equipo();
             Equipo equipo2 = new Equipo();
             Partido partido = new Partido();
-            Pronostico pronostico = new Pronostico();
-            List<String> datosPartido = infoArchivo(archivoResultado, indice);
+            List<String> datosPartido = infoPartido(archivoResultado, indice);
             equipo1.setNombre(datosPartido.get(0));
             equipo2.setNombre(datosPartido.get(3));
             int golesEquipo1 = Integer.parseInt(datosPartido.get(1));
@@ -70,10 +72,18 @@ public class Main {
             partido.setEquipo2(equipo2);
             partido.setGolesEquipo1(golesEquipo1);
             partido.setGolesEquipo2(golesEquipo2);
-            pronostico.setPartido(partido);
-            pronostico.setResultado(resultadoPronostico(infoArchivo(archivoPronostico, indice)));
+            partidos.add(partido);
+        }
+        return partidos;
+    }
+    private static void asignarPronosticos(String archivoPronostico, List<Pronostico> listaPronosticos, List<Partido> listaPartidos, int numeroRonda) throws IOException{
+        //TODO REVISAR, HAY QUE ASIGNAR LOS PRONOSTICOS. COMO HACERLO? POR RONDA O CARGAMOS TODOS Y DESPUES LOS IDENTIFICAMOS?
+        for(int indice = 1; indice <= cantidadPartidosRonda(archivoPronostico, numeroRonda); indice++){
+            Pronostico pronostico = new Pronostico();
+            pronostico.setPartido(listaPartidos.get(indice - 1));
+            pronostico.setResultado(resultadoPronostico(infoPartido(archivoPronostico, indice)));
+            //agregar a las personas
             listaPronosticos.add(pronostico);
-            listaPartidos.add(partido);
         }
     }
 }

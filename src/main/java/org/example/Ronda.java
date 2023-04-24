@@ -1,6 +1,8 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 public class Ronda {
     //propiedades
@@ -37,17 +39,7 @@ public class Ronda {
     }
 
     //metodo
-    public int puntos(List<Pronostico> pronosticosJugador){
-        int aciertos = 0;
-        //Itero sobre los pronosticos para sacar el puntaje individual de cada uno
-        for(Pronostico pronosticoActual : pronosticosJugador){
-            //Itero sobre los partidos para ver si en algun partido hubo un acierto en el pronostico actual
-            for (Partido partidoActual : this.partidos){
-                if(pronosticoActual.getPartido() == partidoActual && pronosticoActual.getResultado() == partidoActual.resultado()){
-                    aciertos++;
-                }
-            }
-        }
-        return aciertos;
+    public List<Persona> puntos(List<Persona> personasJugando){
+        //NO HACE FALTA ORDENAR LOS PUNTAJES
     }
 }
