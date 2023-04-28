@@ -8,16 +8,25 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException{
-        // args[0] tiene que ser el archivo del pronostico y args[1] tiene que ser el archivo del resultado. Sino hay error.
+        // args[0] tiene que ser el archivo del pronostico y args[1] tiene que ser el archivo con la configuracion. Sino hay error.
+        // TODAS LAS INSTANCIAS ESTAN CARGADAS DE FORMA ORDENADA, de lo contrario puede haber errores.
         //armado de instancias
-        // TODO VIEJO List<Pronostico> pronosticos = new ArrayList<>();
         List<Persona> personas = new ArrayList<>(); //LISTA DE PERSONAS QUE SE VA A USAR PARA VER LOS PUNTOS
-        // TODO VIEJO armadoDeInstancias(args[0], args[1], pronosticos, partidos);
-        //creo la ronda con los datos ya incorporados
-        Ronda ronda1 = new Ronda("1", listaDePartidosRonda(args[1], 1));
-        // System.out.println("Puntaje del pronostico: " + ronda1.puntos(personas)); //lista personas y que itere cada persona dando el resultado
+        List<Fase> fases = new ArrayList<>(); // lista con las fases
+        int puntosRonda = 0; //poner valor tomado de la configuracion
+        int puntosFase = 0; //poner valor tomado de la configuracion
+        mostrarPuntosTotales(personas, fases, puntosRonda, puntosFase);
     }
 
+    private static void mostrarPuntosTotales(List<Persona> personasJugando, List<Fase> fases, int puntosExtraRonda, int puntosExtraFase){
+        // itero cada persona para mostrar su puntaje
+        for(Persona personaActual : personasJugando){
+            // muestro el resultado de esa persona utilizando la funcion de puntos totales
+            System.out.println(personaActual.nombre + ": " + personaActual.puntosTotales(fases, puntosExtraFase, puntosExtraRonda));
+        }
+    }
+
+    /* FUNCIONES PARA ARMADO DE INSTANCIAS, INCOMPLETO.
     private static List<String> infoPartido(String archivo, int partido) throws IOException {
         //sacamos una lista con la informacion del partido (al ser univocos no importa cual de los dos archivos procesar para sacar los equipos)
         //el parametro partido indica el numero de partido correspondiente (linea), debe existir ese partido sino da error.
@@ -86,4 +95,5 @@ public class Main {
             listaPronosticos.add(pronostico);
         }
     }
+     */
 }

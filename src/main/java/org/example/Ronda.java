@@ -6,24 +6,33 @@ import java.util.Comparator;
 import java.util.List;
 public class Ronda {
     //propiedades
-    private String numeroRonda;
+    private int numeroFase;
+    private int numeroRonda;
     private List<Partido> partidos;
 
     //constructores
     public Ronda(){
         this.partidos =new ArrayList<>();
     }
-    public Ronda(String numeroRonda, List<Partido> partidos){
+    public Ronda(int numeroFase, int numeroRonda, List<Partido> partidos){
+        this.numeroFase = numeroFase;
         this.numeroRonda = numeroRonda;
         this.partidos = partidos;
     }
 
     //get y set
-    public String getNumeroRonda() {
+    public int getNumeroFase() {
+        return numeroFase;
+    }
+
+    public void setNumeroFase(int numeroFase) {
+        this.numeroFase = numeroFase;
+    }
+    public int getNumeroRonda() {
         return numeroRonda;
     }
 
-    public void setNumeroRonda(String numeroRonda) {
+    public void setNumeroRonda(int numeroRonda) {
         this.numeroRonda = numeroRonda;
     }
 
@@ -38,8 +47,11 @@ public class Ronda {
         this.partidos = partidos;
     }
 
+
     //metodo
-    public List<Persona> puntos(List<Persona> personasJugando){
-        //NO HACE FALTA ORDENAR LOS PUNTAJES
+    public void puntos(List<Persona> personasJugando, int puntosExtraRonda){
+        for(Persona personaActual : personasJugando){
+            System.out.println(personaActual.nombre + ": " + personaActual.puntosRondaFase(this.numeroFase, this.numeroRonda, puntosExtraRonda));
+        }
     }
 }

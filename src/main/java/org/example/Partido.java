@@ -1,8 +1,9 @@
 package org.example;
 public class Partido {
     //propiedades
-    private int IDPartido;
-    private Ronda rondaPartido;
+    private Ronda rondaPartido; //necesitaba ser int o usar id partido
+
+    //private int ID_Partido;
     private Equipo equipo1;
     private Equipo equipo2;
     private int golesEquipo1;
@@ -13,9 +14,7 @@ public class Partido {
 
     }
 
-    public Partido(int IDPartido, Ronda rondaPartido, Equipo equipo1, Equipo equipo2, int golesEquipo1, int golesEquipo2){
-        this.IDPartido = IDPartido;
-        this.rondaPartido= rondaPartido;
+    public Partido(Equipo equipo1, Equipo equipo2, int golesEquipo1, int golesEquipo2){
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
         this.golesEquipo1 = golesEquipo1;
@@ -23,14 +22,6 @@ public class Partido {
     }
 
     //get y set
-    public int getIDPartido() {
-        return IDPartido;
-    }
-
-    public void setIDPartido(int IDPartido) {
-        this.IDPartido = IDPartido;
-    }
-
     public Ronda getRondaPartido() {
         return rondaPartido;
     }
