@@ -15,9 +15,10 @@ public class Main {
         List<Fase> fases = new ArrayList<>(); // lista con las fases
         int puntosRonda = 0; //poner valor tomado de la configuracion
         int puntosFase = 0; //poner valor tomado de la configuracion
-        mostrarPuntosTotales(personas, fases, puntosRonda, puntosFase);
+        //mostrarPuntosTotales(personas, fases, puntosRonda, puntosFase);
     }
 
+    /*
     private static void mostrarPuntosTotales(List<Persona> personasJugando, List<Fase> fases, int puntosExtraRonda, int puntosExtraFase){
         // itero cada persona para mostrar su puntaje
         for(Persona personaActual : personasJugando){
@@ -25,6 +26,8 @@ public class Main {
             System.out.println(personaActual.nombre + ": " + personaActual.puntosTotales(fases, puntosExtraFase, puntosExtraRonda));
         }
     }
+
+     */
 
     /* FUNCIONES PARA ARMADO DE INSTANCIAS, INCOMPLETO.
     private static List<String> infoPartido(String archivo, int partido) throws IOException {

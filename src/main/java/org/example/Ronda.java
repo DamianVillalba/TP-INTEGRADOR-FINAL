@@ -49,9 +49,12 @@ public class Ronda {
 
 
     //metodo
+    /*
     public void puntos(List<Persona> personasJugando, int puntosExtraRonda){
         for(Persona personaActual : personasJugando){
             System.out.println(personaActual.nombre + ": " + personaActual.puntosRondaFase(this.numeroFase, this.numeroRonda, puntosExtraRonda));
         }
     }
+
+     */
 }

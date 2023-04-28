@@ -39,9 +39,12 @@ public class Fase {
     }
 
     //metodos
+    /*
     public void puntos(List<Persona> personas, int puntosExtraRonda, int puntosExtraFase){
         for(Persona personaActual : personas){
             System.out.println(personaActual.nombre + ": " + personaActual.puntosFase(this.numeroFase, this.rondas.size(), puntosExtraFase, puntosExtraRonda));
         }
     }
+
+     */
 }
